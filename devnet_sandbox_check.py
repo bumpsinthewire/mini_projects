@@ -19,10 +19,21 @@ devices = {
 # adjust ping command depending on OS
 ping_cmd = "ping -c 4 " if platform.system() != "Windows" else "ping -n 4 "
 
-# add timestamp
-now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+# redirect ping output to null device
+redirect = " > /dev/null 2>&1" if platform.system() != "Windows" else " > nul 2>&1"
+
+# track results
+reachable = 0
+total = len(devices)
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # loop over each entry in the devices dictionary and ping the device to see if it is reachable
 for device, address in devices.items():
-	response = os.system(ping_cmd + address)
-	print(f"{device:<15} : {'reachable' if response == 0 else 'not reachable'} at {now}")
+	response = os.system(ping_cmd + address + redirect)
+	if response == 0:
+		reachable += 1
+
+# print the summary
+print(f"\nResults at {timestamp}:")
+print(f"Reachable: {reachable}/{total} sandboxes")
+print(f"Not reachable: {total - reachable}/{total} sandboxes")
