@@ -7,7 +7,7 @@ class UserLister:
 	@property
 	def users(self):
 		result = subprocess.run(
-			["ssh", self,host, "cat /etc/passwd"],
+			["ssh", self.host, "cat /etc/passwd"],
 			capture_output=True, text=True
 		)
 		return [line.split(':')[0] for line in result.stdout.splitlines()]
