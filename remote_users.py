@@ -20,6 +20,7 @@ class UserLister:
 				uid = int(match.group(2))
 				if uid >= 1000:
 					users.append(match.group(1))
+					print(f"{match.group(1)}:{match.group(2)}")
 		return users
 	
 lister = UserLister()
