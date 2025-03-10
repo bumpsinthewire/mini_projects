@@ -13,14 +13,8 @@ class UserLister:
 		)
 		pattern = '^([a-zA-Z0-9_]+):[^:]*:(\d+):'
 
-		users = []
-		for line in result.stdout.splitlines():
-			match = re.match(pattern, line)
-			if match:
-				uid = int(match.group(2))
-				if uid >= 1000:
-					users.append(match.group(1))
-		return users
+		users = [match.group(1) for line in result.stdout.splitlines()
+		   if (match := re.match(pattern, line)) and int(match.group(2)) >= 1000]
 	
 lister = UserLister()
 print(lister.get_users)
