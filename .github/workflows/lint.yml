@@ -1,0 +1,12 @@
+name: Lint Bash Script
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Lint bash script
+        uses: ludeeus/action-shellcheck@master
+        with: 
+          files: file_sorter.sh
