@@ -25,8 +25,7 @@ if id "$USERNAME" >/dev/null 2>&1;then
 fi 
 
 # Create user and add to group
-sudo useradd -m -g "$GROUPNAME" -s /bin/bash "$USERNAME"
-if [ $? -eq 0 ]; then
+if sudo useradd -m -g "$GROUPNAME" -s /bin/bash "$USERNAME"; then
 	echo "User $USERNAME created and added to $GROUPNAME."
 else
 	echo "Failed to create user $USERNAME!"
@@ -34,6 +33,6 @@ else
 fi
 
 # set password (interactive)
-sudo passwd $USERNAME
+sudo passwd "$USERNAME"
 
 echo "User $USERNAME created and added to $GROUPNAME!"
