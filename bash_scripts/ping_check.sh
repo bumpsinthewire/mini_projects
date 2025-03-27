@@ -12,7 +12,7 @@ LOGFILE="ping_log.txt"
 
 # Loop through hosts and ping
 for HOST in "$@"; do
-	if ! ping -c 4 "$HOST" > /dev/null 2>&1;
+	if ! ping -c 4 "$HOST" > /dev/null 2>&1; then
 		echo "$(date): $HOST failed to respond" >> "$LOGFILE"
 	else
 		echo "$(date): $HOST is up" >> "$LOGFILE"
