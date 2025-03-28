@@ -25,8 +25,7 @@ if [ ! -d "$SOURCE" ]; then
 fi
 
 # Ensure backup directory exists
-mkdir -p "$BACKUP_DIR"
-if [ $? -ne 0 ]; then
+if ! mkdir -p "$BACKUP_DIR"; then
 	echo "$(date): Failed to create $BACKUP_DIR!" >> "$LOGFILE"
 	exit 1
 fi
