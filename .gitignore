@@ -2,3 +2,5 @@ venv
 ping_log.txt
 log_file.txt
 backup_log.txt
+latency_log.txt
+error_log.txt
