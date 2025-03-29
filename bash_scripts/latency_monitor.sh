@@ -10,7 +10,7 @@ LOGFILE="latency_log.txt"
 
 # Ping and extract average latency (RTT avg from "min/avg/max")
 PING_OUTPUT=$(ping -c 10 "$HOST" 2>/dev/null)
-if [ $? -ne 0 ]; then
+if ! ping -c 10 "$HOST" &>/dev/null; then
 	echo "$(date): Ping to $HOST failed." >> "$LOGFILE"
 	exit 1
 fi
