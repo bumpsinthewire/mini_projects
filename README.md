@@ -1,2 +1,2 @@
 # mini_projects
-repo for small, quick scripts
+a collection of small, quick scripts
